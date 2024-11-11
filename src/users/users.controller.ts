@@ -11,17 +11,17 @@ import { RolesGuard } from '../auth/roles.guard';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @ApiOperation({ summary: 'Create new user' })
-  @ApiResponse({ status: 200, type: User })
-  @Post()
-  create(@Body() userDto: CreateUserDto): Promise<User> {
-    return this.usersService.createUser(userDto);
-  }
+  // @ApiOperation({ summary: 'Create new user' })
+  // @ApiResponse({ status: 200, type: User })
+  // @Post()
+  // create(@Body() userDto: CreateUserDto): Promise<User> {
+  //   return this.usersService.createUser(userDto);
+  // }
 
   @ApiOperation({ summary: 'Get users list' })
   @ApiResponse({ status: 200, type: [User] })
-  // @Roles('admin')
-  // @UseGuards(RolesGuard)
+  @Roles('admin')
+  @UseGuards(RolesGuard)
   @Get()
   getAll(): Promise<User[]> {
     console.log(this.usersService.getAllUsers());
